@@ -1,0 +1,43 @@
+
+{% extends "layout1.html" %}
+
+{% comment %} satatici cagirmagcun {% endcomment %}
+{% load static%}
+
+{% comment %} stlyle.css linkini butun sehifelere dawimagcun layotdan goturub {% endcomment %}
+{% block css_fild %}
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+{% endblock %}
+
+
+{% comment %} layotdan goturduyumuz htmli butun sehifede yazmagcun {% endcomment %}
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a href="create">elave et</a><br>
+            <a href="list">mehsullar</a>
+            <hr>
+            <form action="list" method="GET">
+                
+                <label for="">kelmeleer</label>
+                <input type="text" name="q">
+                <button type="submit">gonder</button>
+            </form>
+            {% for product in products %}
+            <div style="margin-top: 5px;">
+                <a class="btn btn-danger" href={% url "products_detalis" product.slug %}>{{ product.name }} </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% comment %} <p>{{product_count}}-eded qaldi</p> 
+        <p>{{avg_price.price__avg}}-ortalama qiymet</p>  {% endcomment %}
+    </div>
+</div>
+{% endblock%}
+
+{% block page_title  %} {{category}}{% endblock  %}
+
+{% block js_files %}
+<script src="{% static 'js/main.js' %}"> </script>
+{% endblock js_files %}

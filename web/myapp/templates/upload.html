@@ -1,0 +1,35 @@
+
+{% extends "layout1.html" %}
+
+{% comment %} satatici cagirmagcun {% endcomment %}
+{% load static%}
+
+{% comment %} stlyle.css linkini butun sehifelere dawimagcun layotdan goturub {% endcomment %}
+{% block css_fild %}
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+{% endblock %}
+
+
+{% comment %} layotdan goturduyumuz htmli butun sehifede yazmagcun {% endcomment %}
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form action="{% url "upload-image" %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form }}
+                <button >Yukle</button>
+            </form>
+         
+        </div>
+        {% comment %} <p>{{product_count}}-eded qaldi</p> 
+        <p>{{avg_price.price__avg}}-ortalama qiymet</p>  {% endcomment %}
+    </div>
+</div>
+{% endblock%}
+
+{% block page_title  %} upload.html{% endblock  %}
+
+{% block js_files %}
+<script src="{% static 'js/main.js' %}"> </script>
+{% endblock js_files %}

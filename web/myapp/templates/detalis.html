@@ -1,0 +1,30 @@
+{% extends "layout1.html" %}
+
+{% comment %} satatici cagirmagcun {% endcomment %}
+{% load static%}
+
+{% comment %} stlyle.css linkini butun sehifelere dawimagcun layotdan goturub {% endcomment %}
+{% block css_fild %}
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+{% endblock %}
+
+
+{% comment %} layotdan goturduyumuz htmli butun sehifede yazmagcun {% endcomment %}
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>{{ product.name}}</h1>
+            <p>{{ product.description}}</p>
+        </div>
+    </div>
+</div>
+{% endblock%}
+
+{% block page_title  %} 
+{{ product.name}}
+{% endblock  %}
+
+{% block js_files %}
+<script src="{% static 'js/main.js' %}"> </script>
+{% endblock js_files %}

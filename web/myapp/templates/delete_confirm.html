@@ -1,0 +1,41 @@
+{% extends "layout1.html" %}
+
+{% comment %} satatici cagirmagcun {% endcomment %}
+{% load static%}
+
+{% comment %} stlyle.css linkini butun sehifelere dawimagcun layotdan goturub {% endcomment %}
+{% block css_fild %}
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+{% endblock %}
+
+
+{% comment %} layotdan goturduyumuz htmli butun sehifede yazmagcun {% endcomment %}
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <p>
+                <strong>
+                    {{product.name}} adli mehsulu silmek istediyinizden eminsiz?
+
+                    <form action="{% url 'product-delete' product.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit"class="btn btn-danger">Beli</button>
+                        <a href="{% url 'list' %}" class="btn btn-primary">Xeyr</a>
+                    </form>
+                    
+                </strong>
+            </p>
+            
+        </div>
+    </div>
+</div>
+{% endblock%}
+
+{% block page_title  %} 
+{{ product.name}}
+{% endblock  %}
+
+{% block js_files %}
+<script src="{% static 'js/main.js' %}"> </script>
+{% endblock js_files %}

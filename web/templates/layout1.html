@@ -1,0 +1,30 @@
+{% comment %} sttaic faylini cagirmagucun {% endcomment %}
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} global static elde elemek ucun yenin bootstrapi {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_test.css' %}">
+    {% comment %} local statici elde elemek ucun {% endcomment %}
+    {% block css_fild %}{% endblock %}
+    <title>{% block page_title %}{{category}}{% endblock page_title %}</title>
+    
+</head>
+<body>
+    {% comment %} sehifede her defe footeri butun sehifede gezdirmey ucun {% endcomment %}
+    {% include "partial/_header.html"%}
+
+    {% comment %} butun layot1 sehifesinde yazilani butnu sehifede gezdirmeycun {% endcomment %}
+    {% block content%}
+    {% endblock%}
+    
+    {% comment %} butun footeri gezfimeycyb {% endcomment %}
+    {% include "partial/_footer.html"%}
+
+    {% comment %} javascripti gezdirmeycun {% endcomment %}
+    {% block js_files %}{% endblock js_files %}
+</body>
+</html>
