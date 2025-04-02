@@ -16,10 +16,13 @@
     <div class="row">
         <div class="col">
          
-            <h1>register</h1>
+            <h1>Qeydiyyat</h1>
             <hr>
             <form method="POST">
                 {% csrf_token %}
+                {% if error %}
+                    <div class="alert alert-warning"> {{error}} </div>
+                {% endif %}
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" name="username" id="username" class="form-control" required>
@@ -37,7 +40,7 @@
 
                  <div class="mb-3">
                     <label for="repassword" class="form-label">Re-Password</label>
-                    <input type="password" name="password" id="repassword" class="form-control" required>
+                    <input type="password" name="repassword" id="repassword" class="form-control" required>
                 </div>
 
                 <input type="submit" value="Register" class="btn btn-primary">
@@ -46,6 +49,7 @@
         </div>
     </div>
 </div>
+
 {% endblock%}
 
 {% block page_title  %} register{% endblock  %}
