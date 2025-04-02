@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 def login_request(request):
@@ -31,5 +31,6 @@ def register_request(request):
         return render(request, "account/register.html")
 
 def logout_request(request):
-    return redirect("products")
+    logout(request)
+    return redirect("index")
 
