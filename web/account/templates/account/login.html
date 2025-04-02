@@ -1,0 +1,52 @@
+
+{% extends "layout1.html" %}
+
+{% comment %} satatici cagirmagcun {% endcomment %}
+{% load static%}
+
+{% comment %} stlyle.css linkini butun sehifelere dawimagcun layotdan goturub {% endcomment %}
+{% block css_fild %}
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+{% endblock %}
+
+
+{% comment %} layotdan goturduyumuz htmli butun sehifede yazmagcun {% endcomment %}
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col">
+         
+            <h1>login</h1>
+            <hr>
+            <form method="POST">
+                {% csrf_token %}
+                {% if error %}
+                    <div class="alert alert-warning">
+                        {{error}}
+                    </div>
+                {% endif %}
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" name="username" id="username" class="form-control" required>
+                </div>
+
+                 <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" required>
+                </div>
+
+                <input type="submit" value="Login" class="btn btn-primary">
+            </form>
+           
+        </div>
+    </div>
+</div>
+{% endblock%}
+
+{% block page_title  %} login{% endblock  %}
+
+{% block js_files %}
+<script src="{% static 'js/main.js' %}"> </script>
+{% endblock js_files %}
+
+

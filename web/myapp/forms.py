@@ -20,7 +20,7 @@ class ProductCreateForm(forms.ModelForm):
 
             "name": {
 
-                "required": "bu sahe dolmaldir blinnnnnn",
+                "required": "bu sahe dolmaldir ",
                 "max_length":"maxs 100 xarakter olmalidir"
                 
             }

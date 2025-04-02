@@ -1,12 +1,36 @@
 <header>
-<div class="navbar navbar-dark bg-primary mb-3">
-    <div class="container">
-        <a class="navbar-brand" href="/">ana sehife</a>
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-    </div>
-</div>
+    <nav class="navbar navbar-dark navbar-expand-lg bg-primary mb-3 py-2">
+        <div class="container">
+            <!-- Logo/Site adı (sol tərəf) -->
+            <a class="navbar-brand me-4" href="/products">Ana Səhifə</a>
+            
+            <!-- Boşluq üçün flex böyümə elementi -->
+            <div class="flex-grow-1 d-none d-lg-block"></div>
+            
+            <!-- Toggler button -->
+            <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarRightContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Sağ tərəf contenti -->
+            <div class="collapse navbar-collapse" id="navbarRightContent">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item px-2">
+                        <a href="{% url 'login' %}" class="nav-link">Daxil ol</a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a href="{% url 'register' %}" class="nav-link">Qeydiyyat</a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a href="{% url 'logout' %}" class="nav-link">Çıxış</a>
+                    </li>
+                    <li class="nav-item ps-2">
+                        <a href="#" class="nav-link">İstifadəçiAdı</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </header>
-{% comment %} sablon olraq bura headerdir {% endcomment %}

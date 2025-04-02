@@ -20,7 +20,7 @@ def index(request):
         # "product_count":product_count,
         # "avg_price":avg_price
     }
-    return render(request, 'index.html', context)
+    return render(request, 'my_app/index.html', context)
 
 def list(request):
     if "q" in  request.GET and request.GET.get("q"):
@@ -31,7 +31,7 @@ def list(request):
     context = {
         "products":products,
     }
-    return render(request, 'list.html', context)
+    return render(request, 'my_app/list.html', context)
 
 def create(request):
     if request.method == "POST":
@@ -43,7 +43,7 @@ def create(request):
        form = ProductCreateForm()
 
 
-    return render(request, "create.html",{
+    return render(request, "my_app/create.html",{
         "form":form
     })
 
@@ -61,7 +61,7 @@ def edit(request,id):
     else:
         form = ProductEditForm(instance=product)
 
-    return render(request,"edit.html",{
+    return render(request,"my_app/edit.html",{
         "form":form
     })  
 
@@ -71,7 +71,7 @@ def delete(request,id):
     if request.method == "POST":
         product.delete()
         return redirect("list")
-    return render(request,"delete_confirm.html",{
+    return render(request,"my_app/delete_confirm.html",{
         "product":product
     })
 
@@ -83,7 +83,7 @@ def detalis(request,slug):
         "product":product
     }
 
-    return render(request,"detalis.html",context)
+    return render(request,"my_app/detalis.html",context)
 
 # def handle_uploaded(file):
 #     number = random.randint(10000, 99999)
@@ -101,10 +101,10 @@ def upload(request):
         if form.is_valid():
             model = UploadModel(image = request.FILES["image"])
             model.save()
-            return render(request, "success.html")
+            return render(request, "my_app/success.html")
     else:
         form = UploadForm()
-    return render(request, "upload.html", {
+    return render(request, "my_app/upload.html", {
         "form":form
     })
 
