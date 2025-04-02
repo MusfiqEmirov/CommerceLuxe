@@ -15,7 +15,11 @@ def login_request(request):
 
         if user is not None:
             login(request, user)
-            return redirect("index")
+            nextUrl = request.GET.get("next", None)
+            if nextUrl is None:
+                return redirect("index")
+            else:
+                return redirect(nextUrl)
         else:
             return render(request, "account/login.html", {
             "error":"username ya da sifre yalnisdir"

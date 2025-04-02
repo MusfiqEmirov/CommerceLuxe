@@ -3,12 +3,13 @@ import os
 import random
 from django.shortcuts import render,redirect,render,get_object_or_404
 from django.http.response import HttpResponse,HttpResponseRedirect,HttpResponseNotFound,Http404
+from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
 
 from django.urls import reverse
 from .models import Product, UploadModel
 from django.db.models import Avg, Min, Max
 from .forms import ProductCreateForm, ProductEditForm, UploadForm
-
 
 def index(request):
     
@@ -22,7 +23,9 @@ def index(request):
     }
     return render(request, 'my_app/index.html', context)
 
+@login_required(login_url="/account/login")
 def list(request):
+    
     if "q" in  request.GET and request.GET.get("q"):
         q = request.GET["q"]
         products = Product.objects.filter(name__contains=q)
@@ -33,6 +36,7 @@ def list(request):
     }
     return render(request, 'my_app/list.html', context)
 
+@login_required(login_url="/account/login")
 def create(request):
     if request.method == "POST":
         form = ProductCreateForm(request.POST, request.FILES)
@@ -47,7 +51,7 @@ def create(request):
         "form":form
     })
 
-
+@login_required(login_url="/account/login")
 def edit(request,id):
     product = get_object_or_404(Product,pk=id)
 
@@ -65,6 +69,7 @@ def edit(request,id):
         "form":form
     })  
 
+@login_required(login_url="/account/login")
 def delete(request,id):
     product = get_object_or_404(Product,pk=id)
     
@@ -76,7 +81,7 @@ def delete(request,id):
     })
 
 
-
+@login_required(login_url="/account/login")
 def detalis(request,slug):
     product = get_object_or_404(Product, slug=slug)
     context = {
@@ -94,6 +99,8 @@ def detalis(request,slug):
 #         for chunk in file.chunks():
 #             destination.write(chunk)
 
+
+@login_required(login_url="/account/login")
 def upload(request):
     if request.method == "POST":
         form = UploadForm(request.POST, request.FILES)
