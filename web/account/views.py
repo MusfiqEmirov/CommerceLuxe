@@ -3,6 +3,9 @@ from django.contrib.auth import authenticate, login
 
 
 def login_request(request):
+
+    if request.user.is_authenticated:
+        return render(request, "index")
     if request.method == "POST":
         username = request.POST["username"] 
         password = request.POST["password"]
@@ -11,7 +14,7 @@ def login_request(request):
 
         if user is not None:
             login(request, user)
-            redirect("products")
+            return redirect("index")
         else:
             return render(request, "account/login.html", {
             "error":"username ya da sifre yalnisdir"

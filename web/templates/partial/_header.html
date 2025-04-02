@@ -17,18 +17,26 @@
             <!-- Sağ tərəf contenti -->
             <div class="collapse navbar-collapse" id="navbarRightContent">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item px-2">
-                        <a href="{% url 'login' %}" class="nav-link">Daxil ol</a>
-                    </li>
-                    <li class="nav-item px-2">
-                        <a href="{% url 'register' %}" class="nav-link">Qeydiyyat</a>
-                    </li>
-                    <li class="nav-item px-2">
-                        <a href="{% url 'logout' %}" class="nav-link">Çıxış</a>
-                    </li>
-                    <li class="nav-item ps-2">
-                        <a href="#" class="nav-link">İstifadəçiAdı</a>
-                    </li>
+
+                    {% if user.is_authenticated %}
+                        <li class="nav-item px-2">
+                            <a href="{% url 'logout' %}" class="nav-link">Çıxış</a>
+                        </li>
+                        <li class="nav-item ps-2">
+                            <a href="#" class="nav-link">Xos geldin <p class="text-black text-bold">
+                                                                        <strong>{{user.username}}</strong>
+                                                                    </p>
+                           </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item px-2">
+                            <a href="{% url 'login' %}" class="nav-link">Daxil ol</a>
+                        </li>
+                        <li class="nav-item px-2">
+                            <a href="{% url 'register' %}" class="nav-link">Qeydiyyat</a>
+                        </li>
+                    {% endif %}
+                 
                 </ul>
             </div>
         </div>
