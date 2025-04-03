@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 
 def login_request(request):
@@ -17,14 +18,13 @@ def login_request(request):
             login(request, user)
             nextUrl = request.GET.get("next", None)
             if nextUrl is None:
+                messages.success(request, "Giris ugurla tamamlandi.")
                 return redirect("index")
             else:
                 return redirect(nextUrl)
         else:
-            return render(request, "account/login.html", {
-            "error":"username ya da sifre yalnisdir"
-        })
-            
+            messages.error(request, "username ya da sifre yalnisdir")
+            return render(request, "account/login.html")
     else:
         return render(request, "account/login.html")
 

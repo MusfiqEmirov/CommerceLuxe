@@ -20,11 +20,6 @@
             <hr>
             <form method="POST">
                 {% csrf_token %}
-                {% if error %}
-                    <div class="alert alert-warning">
-                        {{error}}
-                    </div>
-                {% endif %}
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" name="username" id="username" class="form-control" required>
