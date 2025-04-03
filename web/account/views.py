@@ -46,11 +46,13 @@ def register_request(request):
                     user.save()
                     return redirect("login")
         else:
-            return render(request, "account/register.html", {"error":"sfire uygun gelmir yeniden cehd edin"})
+            messages.error(request, "sifre uygun gelmir yeniden cehd edin")
+            return render(request, "account/register.html")
     else:
         return render(request, "account/register.html")
 
 def logout_request(request):
     logout(request)
+    messages.error(request, "Siz cixis etdiniz!!! Giris ucun daxil olun")
     return redirect("index")
 

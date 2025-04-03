@@ -1,10 +1,26 @@
-
 {% if messages %}
-<ul class="messages">
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 9999;">
     {% for message in messages %}
-        <li {% if message.tags %}  {% endif %}> 
-            {{message}}
-        </li>
+    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+        <div class="toast-header">
+            <strong class="me-auto">Bildiriş</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body {{ message.tags }}">
+            {{ message }}
+        </div>
+    </div>
     {% endfor %}
-</ul>
+</div>
+
+<script>
+    // Bootstrap Toast avtomatik bağlansın
+    document.addEventListener('DOMContentLoaded', function() {
+        let toasts = document.querySelectorAll('.toast');
+        toasts.forEach(function(toast) {
+            let bsToast = new bootstrap.Toast(toast);
+            bsToast.show();
+        });
+    });
+</script>
 {% endif %}
